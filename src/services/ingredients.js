@@ -1,4 +1,4 @@
-const apiHost = 'http://192.168.1.149:9000'
+const apiHost = ''
 
 export async function list(query={}) {
   const partial = new URLSearchParams()
