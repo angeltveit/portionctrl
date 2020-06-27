@@ -2,7 +2,9 @@ style= require('./quick-log.styl')
 .total
   .counter
     .heading TODAY
-    h2=totalCalories
+    h2(
+      class=this.status(totalCalories)
+    )=totalCalories
     .description kcal
 each item in list
   .item(

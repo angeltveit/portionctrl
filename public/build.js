@@ -8228,6 +8228,8 @@ var _widgets = require("@scoutgg/widgets");
 
 var _meals = require("../../services/meals");
 
+var _moment = _interopRequireDefault(require("moment"));
+
 var _history = _interopRequireDefault(require("./history.pug"));
 
 var _dec, _dec2, _class;
@@ -8256,6 +8258,23 @@ let History = (_dec = (0, _widgets.Component)('kcal'), _dec2 = (0, _widgets.Temp
     this.load();
   }
 
+  status(kcal) {
+    if (kcal <= 999) return 'success';
+    if (kcal <= 1499) return 'warning';
+    return 'danger';
+  }
+
+  totalCalories(day) {
+    if (!this.list) return 0;
+    const meals = this.list.filter(meal => {
+      return (0, _moment.default)(meal.createdAt).isSame((0, _moment.default)(day), 'day');
+    });
+    return meals.reduce((prev, curr) => {
+      prev += +(0, _meals.kcalFor)(curr);
+      return prev;
+    }, 0);
+  }
+
   get kcalFor() {
     return _meals.kcalFor;
   }
@@ -8263,7 +8282,7 @@ let History = (_dec = (0, _widgets.Component)('kcal'), _dec2 = (0, _widgets.Temp
 }) || _class) || _class);
 exports.default = History;
 
-},{"../../services/meals":66,"./history.pug":53,"@babel/runtime/helpers/interopRequireDefault":3,"@scoutgg/widgets":11}],53:[function(require,module,exports){
+},{"../../services/meals":66,"./history.pug":53,"@babel/runtime/helpers/interopRequireDefault":3,"@scoutgg/widgets":11,"moment":24}],53:[function(require,module,exports){
 var $$ = require('fn-pug/lib/runtime/vdom').default(require('virtual-dom/h'))
 function template(__INIT__) {
   var list = this.list;
@@ -8289,44 +8308,56 @@ function template(__INIT__) {
     "class": 'date'
   });
   $$.child(e$3, $$.text(`Today`));
+  let e$4 = $$.create("span");
+  $$.attrs(e$4, {
+    "class": ['kcal', this.status(this.totalCalories(moment()))]
+  });
+  $$.child(e$4, $$.text(` (${this.totalCalories(moment())}kcal)`));
+  $$.child(e$3, $$.element(e$4));
   $$.child(e$2, $$.element(e$3));
   $$.each(list, meal => {
     if (!moment(meal.createdAt).isSame(date, 'day')) {
-      let e$4 = $$.create("div");
-      $$.attrs(e$4, {
+      let e$5 = $$.create("div");
+      $$.attrs(e$5, {
         "class": 'date'
       });
-      $$.child(e$4, $$.text(moment(meal.createdAt).format('ddd, ll')));
-      $$.child(e$2, $$.element(e$4));
+      $$.child(e$5, $$.text(moment(meal.createdAt).format('ddd, ll')));
+      let e$6 = $$.create("span");
+      $$.attrs(e$6, {
+        "class": ['kcal', this.status(this.totalCalories(meal.createdAt))]
+      });
+      $$.child(e$6, $$.text(` (${this.totalCalories(meal.createdAt)}kcal)`));
+      $$.child(e$5, $$.element(e$6));
+      $$.child(e$2, $$.element(e$5));
       date = meal.createdAt;
     }
 
-    let e$5 = $$.create("div");
-    $$.attrs(e$5, {
+    let e$7 = $$.create("div");
+    $$.attrs(e$7, {
       "class": 'title'
     });
-    $$.child(e$5, $$.text(meal.title));
-    $$.child(e$2, $$.element(e$5));
-    let e$6 = $$.create("div");
-    $$.attrs(e$6, {
+    $$.child(e$7, $$.text(meal.title));
+    $$.child(e$2, $$.element(e$7));
+    let e$8 = $$.create("div");
+    $$.attrs(e$8, {
       "class": 'kcal'
     });
-    $$.child(e$6, $$.text(this.kcalFor(meal) + 'kcal'));
-    $$.child(e$2, $$.element(e$6));
-    let e$7 = $$.create("a");
-    $$.attrs(e$7, {
+    $$.child(e$8, $$.text(this.kcalFor(meal) + 'kcal'));
+    $$.child(e$2, $$.element(e$8));
+    let e$9 = $$.create("a");
+    $$.attrs(e$9, {
       "href": 'javascript:'
     });
-    $$.events(e$7, this, [["click", e => this.remove(meal._id)]]);
-    $$.child(e$7, $$.text('-Delete'));
-    $$.child(e$2, $$.element(e$7));
+    $$.events(e$9, this, [["click", e => this.remove(meal._id)]]);
+    $$.child(e$9, $$.text('-Delete'));
+    $$.child(e$2, $$.element(e$9));
   });
   $$.child(__RESULT__, $$.element(e$2));
   return $$.end(__RESULT__);
 }
 module.exports = template
 },{"./history.styl":54,"fn-pug/lib/runtime/vdom":20,"moment":24,"virtual-dom/h":26}],54:[function(require,module,exports){
-module.exports = ":host{padding:1em}.meals{display:grid;grid-template-columns:1fr auto auto;padding:1em;grid-gap:.5em}.date{grid-column:span 3;text-align:center;font-weight:bold;padding:.5em 0}a{text-align:right;padding:0 .5em}h1,h2{font-weight:300;margin:0;margin-top:1em;color:#00b4d8;text-align:center}";
+module.exports = ":host{padding:1em}.meals{display:grid;grid-template-columns:1fr auto auto;padding:1em;grid-gap:.5em}.date{grid-column:span 3;text-align:center;font-weight:bold;padding:.5em 0}a{text-align:right;padding:0 .5em}.kcal{opacity:.7;font-style:italic;}.kcal.success{color:#008000}.kcal.warning{color:#ffa500}.kcal.danger{color:#f00}h1,h2{font-weight:300;margin:0;margin-top:1em;color:#00b4d8;text-align:center}";
 },{}],55:[function(require,module,exports){
 "use strict";
 
@@ -8821,6 +8852,12 @@ let QuickLog = (_dec = (0, _widgets.Component)('kcal'), _dec2 = (0, _widgets.Tem
     }
   }
 
+  status(kcal) {
+    if (kcal <= 999) return 'success';
+    if (kcal <= 1499) return 'warning';
+    return 'danger';
+  }
+
   get totalCalories() {
     if (!this.today) return 0;
     const meals = (this.today || []).filter(meal => {
@@ -8861,6 +8898,9 @@ function template(__INIT__) {
   $$.child(e$3, $$.text(`TODAY`));
   $$.child(e$2, $$.element(e$3));
   let e$4 = $$.create("h2");
+  $$.attrs(e$4, {
+    "class": this.status(totalCalories)
+  });
   $$.child(e$4, $$.text(totalCalories));
   $$.child(e$2, $$.element(e$4));
   let e$5 = $$.create("div");
@@ -8912,7 +8952,7 @@ function template(__INIT__) {
 }
 module.exports = template
 },{"./quick-log.styl":63,"fn-pug/lib/runtime/vdom":20,"virtual-dom/h":26}],63:[function(require,module,exports){
-module.exports = ".item{display:grid;grid-template-columns:auto 1fr;background-color:#48cae4;padding:2em 1em;margin:1em;border-radius:5px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,0.3));color:#0077b6;cursor:pointer;}.item .heading{color:#023e8a;font-size:1.5em}.item .kcal{font-weight:bold;}.item .kcal span{opacity:.6}.item .icon{grid-row:span 2;width:5em;}.item .icon img{height:3em;filter:drop-shadow(1px 1px 0 #000)}.total{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:2em;margin-top:-2em;background-image:url(\"/images/counter-splash.jpg\");background-size:cover;padding:1em;}.total .counter{display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:bold;border:5px solid #0077b6;height:10em;width:10em;border-radius:50%;background-color:#fff;filter:drop-shadow(0 0 10px #fff);}.total .counter h2{margin:0;font-weight:bold;font-size:3em;line-height:1em}.total .counter .heading{font-size:.9em;margin-bottom:-.25em}.total .counter .description{font-size:.9em}";
+module.exports = ".item{display:grid;grid-template-columns:auto 1fr;background-color:#48cae4;padding:2em 1em;margin:1em;border-radius:5px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,0.3));color:#0077b6;cursor:pointer;}.item .heading{color:#023e8a;font-size:1.5em}.item .kcal{font-weight:bold;}.item .kcal span{opacity:.6}.item .icon{grid-row:span 2;width:5em;}.item .icon img{height:3em;filter:drop-shadow(1px 1px 0 #000)}.total{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:2em;margin-top:-2em;background-image:url(\"/images/counter-splash.jpg\");background-size:cover;padding:1em;}.total .counter{display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:bold;border:5px solid #0077b6;height:10em;width:10em;border-radius:50%;background-color:#fff;filter:drop-shadow(0 0 10px #fff);}.total .counter h2{margin:0;font-weight:bold;font-size:3em;line-height:1em;}.total .counter h2.warning{color:#ffa500}.total .counter h2.danger{color:#f00}.total .counter .heading{font-size:.9em;margin-bottom:-.25em}.total .counter .description{font-size:.9em}";
 },{}],64:[function(require,module,exports){
 "use strict";
 

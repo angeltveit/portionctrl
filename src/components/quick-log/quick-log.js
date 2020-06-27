@@ -35,6 +35,11 @@ export default class QuickLog extends HTMLElement {
       alert(response.error || 'Unknown error')
     }
   }
+  status(kcal) {
+    if(kcal <= 999) return 'success'
+    if(kcal <= 1499) return 'warning'
+    return 'danger'
+  }
   get totalCalories() {
     if(!this.today) return 0
     const meals = (this.today || []).filter(meal => {

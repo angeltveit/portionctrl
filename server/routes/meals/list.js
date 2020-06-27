@@ -12,7 +12,7 @@ export default [
     const meals = await mongo('meals')
       .find(query)
       .skip(+req.query.skip || 0)
-      .limit( +req.query.limit || 10 )
+      .limit( +req.query.limit || 0 )
       .toArray()
     
     return meals

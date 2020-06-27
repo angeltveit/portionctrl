@@ -5,9 +5,15 @@ style= require('./history.styl')
 h1 Meal history
 .meals
   .date Today
+    span.kcal(
+      class=this.status(totalCalories(moment()))
+    )=` (${totalCalories(moment())}kcal)`
   each meal in list
     if !moment(meal.createdAt).isSame(date, 'day')
       .date=moment(meal.createdAt).format('ddd, ll')
+        span.kcal(
+          class=this.status(totalCalories(meal.createdAt))
+        )=` (${totalCalories(meal.createdAt)}kcal)`
       - date = meal.createdAt
     .title=meal.title
     .kcal=kcalFor(meal) + 'kcal'
