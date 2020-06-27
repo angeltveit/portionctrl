@@ -1,0 +1,96 @@
+:host
+  display: flex
+  flex-direction: column
+  padding: 1em
+h1, h2
+  font-weight: 300
+  margin: 0
+  margin-top: 1em
+  color: #00B4D8
+  display: flex
+  align-items: center
+  a
+    font-size: .5em
+a
+  text-transform: uppercase
+  font-weight: bold
+  color: #03045E
+  margin-left: auto
+  font-size: .8em
+  display: flex
+  align-items: center
+input
+  border: 1px solid rgba(0,0,0,0.2)
+  border-radius: 5px
+  padding: .5em 1em
+  font-size: 16px
+  box-sizing: border-box
+  &:focus
+    outline: none
+    border-color: #0077B6
+.ingredients
+  display: grid
+  grid-gap: 0 1em
+  grid-template-columns: 1fr 80px 80px auto
+  .name
+    width: 100%
+    min-width: none
+  .kcal
+    width: 100%
+.label
+  padding-top: 1em
+  color: rgba(0,0,0,0.7)
+  font-weight: bold
+  text-transform: uppercase
+  font-size: .8em
+
+.total
+  margin-top: 4em
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  margin-bottom: 2em
+  .counter
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    font-weight: bold
+    border: 3px solid #0077B6
+    height: 10em
+    width: 10em
+    border-radius: 50%
+    h2
+      margin: 0
+      font-weight: bold
+      font-size: 3em
+      line-height: 1em
+    .heading
+      font-size: .9em
+      margin-bottom: -.25em
+    .description
+      font-size: .9em
+  
+.save
+  background-color: #0077b6
+  color: rgba(255,255,255,.9)
+  padding: 1em
+  font-size: 1.25em
+  font-weight: bold
+  text-align: center
+  margin-top: auto
+  cursor: pointer
+.suggestions
+  height: 0px
+  overflow: auto
+  background-color: rgba(0,0,0,0.1)
+  transition-property: height
+  transition-duration: 250ms
+  transition-timing-function: ease-out
+  &.show
+    height: 100px
+  .suggestion
+    padding: .25em
+    margin: .25em
+    background-color: rgba(255,255,255, .8)

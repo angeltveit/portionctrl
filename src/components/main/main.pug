@@ -1,0 +1,32 @@
+style=require('./main.styl')
+
+.menu
+  .logo
+    img(src="/images/portionctrl.png")
+  .tabs
+    .tab(
+      (click)=setState('quick-log'),
+      class={ active: state === 'quick-log' }
+    ) Quick log
+    .tab(
+      (click)=setState('log-meal'),
+      class={ active: state === 'log-meal' }
+    ) Log meal
+    .tab(
+      (click)=setState('history'),
+      class={ active: state === 'history' }
+    ) History
+
+
+if state === 'quick-log'
+  kcal-quick-log(
+    (changeState)=setState(e.state)
+  )
+else if state === 'log-meal'
+  kcal-new-meal(
+    (changeState)=setState(e.state)
+  )
+else if state === 'history'
+  kcal-history(
+    (changeState)=setState(e.state)
+  )

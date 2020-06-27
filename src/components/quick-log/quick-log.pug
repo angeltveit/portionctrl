@@ -1,0 +1,16 @@
+style= require('./quick-log.styl')
+.total
+  .counter
+    .heading TODAY
+    h2=totalCalories
+    .description kcal
+each item in list
+  .item(
+    (click)=quickLog(item)
+  )
+    .icon
+      if item.icon
+        img(src=`/images/icons/${item.icon}`)
+    .heading=item.name
+    .kcal=`${item.kcal}kcal`
+      span=` (${+item.kcal+totalCalories}kcal)`

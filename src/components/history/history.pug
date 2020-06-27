@@ -1,0 +1,17 @@
+style= require('./history.styl')
+-let moment = require('moment')
+-let date = moment()
+
+h1 Meal history
+.meals
+  .date Today
+  each meal in list
+    if !moment(meal.createdAt).isSame(date, 'day')
+      .date=moment(meal.createdAt).format('ddd, ll')
+      - date = meal.createdAt
+    .title=meal.title
+    .kcal=kcalFor(meal) + 'kcal'
+    a(
+      (click)=remove(meal._id),
+      href='javascript:'
+    )= '-Delete'

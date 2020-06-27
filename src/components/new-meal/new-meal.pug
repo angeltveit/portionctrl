@@ -1,0 +1,69 @@
+style=require('./new-meal.styl')
+
+h1 Enter new meal
+p Your meal will be stored so you can easily re-make it without having to enter all the ingredients each time.
+.label Meal title
+input(
+  (blur)=setTimeout(() => this.clearSuggestions(), 500),
+  (keyup)=setInput('title', e),
+  name=`title`
+)
+.suggestions(
+  class={ show: mealSuggestions?.length }
+)
+  each meal in mealSuggestions
+    .suggestion(
+      (click)=useMealSuggestion(meal)
+    )= meal.title
+
+h2 Ingredients
+  a(
+    (click)=addIngredient(),
+    href='javascript:'
+  )='+Add ingredient'
+.ingredients
+  each ingredient, index in form.ingredients
+    .label Ingredient
+    .label Kcal/100g
+    .label Grams
+    .label
+    div
+      input.name(
+        (blur)=setTimeout(() => this.clearSuggestions(), 500),
+        [value]=ingredient.name || '',
+        name=`name-${index}`,
+        (keyup)=setIngredient(index, 'name', e)
+      )
+      .suggestions(
+        class={ show: ingredientSuggestions[index]?.length }
+      )
+        each ingredient in ingredientSuggestions[index]
+          .suggestion(
+            (click)=useIngredientSuggestion(index, ingredient)
+          )= ingredient.name
+    div
+      input.kcal(
+        [value]=ingredient.kcal || '',
+        (keyup)=setIngredient(index, 'kcal', e),
+        name=`kcal-${index}`,
+      )
+    div
+      input.kcal(
+        [value]=ingredient.gram || '',
+        (keyup)=setIngredient(index, 'gram', e),
+        name=`gram-${index}`,
+      )
+    a(
+      (click)=removeIngredient(index)
+      href='javascript:'
+    ) -Remove
+.total
+  .counter
+    .heading TOTAL
+    h2=totalCalories
+    .description kcal
+  div
+
+.save(
+  (click)=this.save()
+) Log meal
