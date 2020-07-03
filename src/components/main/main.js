@@ -26,4 +26,11 @@ export default class Main extends HTMLElement {
     this.state = state
     this.render()
   }
+  
+  logout() {
+    const yes = confirm('Are you sure you want to log out?')
+    if(!yes) return
+    localStorage.clear()
+    location.reload()
+  }
 }

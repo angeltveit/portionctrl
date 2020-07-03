@@ -3,6 +3,10 @@ if state !== 'auth'
   .menu
     .logo
       img(src="/images/portionctrl.png")
+      a(
+        (click)=logout(),
+        href='javascript:'
+      ) Logout
     .tabs
       .tab(
         (click)=setState('quick-log'),
