@@ -10,7 +10,7 @@ import '../auth/auth'
 
 import template from './main.pug'
 
-@Component('kcal')
+@Component('kcal', {  })
 @Template(template)
 export default class Main extends HTMLElement {
   async connectedCallback() {
@@ -32,5 +32,9 @@ export default class Main extends HTMLElement {
     if(!yes) return
     localStorage.clear()
     location.reload()
+  }
+
+  get noShadow() {
+    return true
   }
 }

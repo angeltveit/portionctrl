@@ -33,8 +33,11 @@ export default class Auth extends HTMLElement {
     this.emit('changeState', { state: 'quick-log' })
   }
   setValue(key, e) {
-    const input = this.shadowRoot.querySelector(`input[name=${key}]`).value
+    const input = this.querySelector(`input[name=${key}]`).value
     this.form[key] = input
     this.render()
+  }
+  get noShadow() {
+    return true
   }
 }

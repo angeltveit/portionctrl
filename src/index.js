@@ -1,5 +1,5 @@
 import { bootstrap } from '@scoutgg/widgets'
-import { vdom as renderer } from '@scoutgg/widgets/cjs/renderers/vdom'
+import { vdom as renderer } from './utils/vdom-renderer'
 import rerenderPlugin from '@scoutgg/widgets/cjs/plugins/rerender.js'
 import { emit } from './utils'
 import patch from 'virtual-dom/patch'
@@ -10,7 +10,6 @@ import diff from 'virtual-dom/diff'
 // Import the components you want to use
 import './components/main/main'
 import './components/icon/icon'
-
 
 if(module.hot) {
   module.hot.accept()
