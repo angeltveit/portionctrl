@@ -9,9 +9,11 @@ export default class Ingredients extends HTMLElement {
   async connectedCallback() {
     this.load()
   }
-  async load() {
+  async load(search=undefined) {
     this.starred = await getStarred()
-    this.list = await list()
+    this.list = await list({
+      ...search && { search }
+    })
     this.render()
   }
   async star(item) {
@@ -20,5 +22,9 @@ export default class Ingredients extends HTMLElement {
   }
   isStarred(item) {
     return this.starred.find(s => s._id === item._id)
+  }
+  async searchIngredients() {
+    const value = this.shadowRoot.querySelector('[name="search"]').value
+    this.load(value)
   }
 }

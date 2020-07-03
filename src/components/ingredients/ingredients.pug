@@ -14,6 +14,11 @@ if starred
       .no-fav You have no favourites 😔
 if list
   h1 Ingredients
+  input.name#single-factor-code-text-field(
+    name='search',
+    placeholder='Search ingredients...',
+    (keyup)=searchIngredients()
+  )
   .ingredients
     each item in list
       .item

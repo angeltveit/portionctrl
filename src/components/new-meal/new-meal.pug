@@ -34,13 +34,6 @@ h2 Ingredients
         name=`name-${index}`,
         (keyup)=setIngredient(index, 'name', e)
       )
-      .suggestions(
-        class={ show: ingredientSuggestions[index]?.length }
-      )
-        each ingredient in ingredientSuggestions[index]
-          .suggestion(
-            (click)=useIngredientSuggestion(index, ingredient)
-          )= ingredient.name
     div
       input.kcal(
         [value]=ingredient.kcal || '',
@@ -57,6 +50,13 @@ h2 Ingredients
       (click)=removeIngredient(index)
       href='javascript:'
     ) -Remove
+    .suggestions(
+      class={ show: ingredientSuggestions[index]?.length }
+    )
+      each ingredient in ingredientSuggestions[index]
+        .suggestion(
+          (click)=useIngredientSuggestion(index, ingredient)
+        )= ingredient.name
 .total
   .counter
     .heading TOTAL

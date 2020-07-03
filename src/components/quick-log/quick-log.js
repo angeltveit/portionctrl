@@ -24,6 +24,7 @@ export default class QuickLog extends HTMLElement {
     const yes = confirm('Are you sure?')
     if(!yes) return
     delete ingredient._id
+    ingredient.gram = 100
     const response = await create({
       title: ingredient.name,
       ingredients: [ingredient],
