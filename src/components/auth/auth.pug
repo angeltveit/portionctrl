@@ -24,6 +24,7 @@ if state === 'otp'
     input.name(
       [value]=form?.code || '',
       name='code',
+      autocomplete='one-time-code',
       (keyup)=setValue('code', e)
     )
     .button(
