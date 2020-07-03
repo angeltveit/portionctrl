@@ -11,6 +11,7 @@ if state !== 'otp'
       [value]=form?.phone || '',
       name='phone',
       type='tel',
+      autocomplete='off',
       (keyup)=setValue('phone', e)
     )
     .button(
