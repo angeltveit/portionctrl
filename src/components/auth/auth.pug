@@ -1,0 +1,30 @@
+style= require('./auth.styl')
+
+
+
+if state !== 'otp'
+  .form
+    h1 Login
+    p Enter your phone number to receive a login code by SMS
+    .label Phone number:
+    input.name(
+      [value]=form?.phone || '',
+      name='phone',
+      (keyup)=setValue('phone', e)
+    )
+    .button(
+      (click)=login()
+    ) Next
+if state === 'otp'
+  .form
+    h1 Code
+    p You will receive a code by SMS. Please check your phone.
+    .label Code from SMS:
+    input.name(
+      [value]=form?.code || '',
+      name='code',
+      (keyup)=setValue('code', e)
+    )
+    .button(
+      (click)=login()
+    ) Login

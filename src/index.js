@@ -9,6 +9,7 @@ import diff from 'virtual-dom/diff'
 
 // Import the components you want to use
 import './components/main/main'
+import './components/icon/icon'
 
 
 if(module.hot) {

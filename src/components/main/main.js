@@ -4,6 +4,8 @@ import { create } from '../../services/meals'
 import '../new-meal/new-meal'
 import '../history/history'
 import '../quick-log/quick-log'
+import '../ingredients/ingredients'
+import '../auth/auth'
 
 
 import template from './main.pug'
@@ -12,7 +14,12 @@ import template from './main.pug'
 @Template(template)
 export default class Main extends HTMLElement {
   async connectedCallback() {
-    this.state = 'quick-log'
+    if(!localStorage.token) {
+      this.state = 'auth'
+    } else {
+      this.state = 'quick-log'
+    }
+    
     this.render()
   }
   setState(state) {

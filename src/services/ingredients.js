@@ -8,6 +8,7 @@ export async function list(query={}) {
   const response = await fetch(`${apiHost}/api/ingredients?${partial.toString()}`, {
     headers: {
       'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
     }
   })
   return await response.json()
@@ -19,6 +20,29 @@ export async function create(body) {
     body: JSON.stringify(body),
     headers: {
       'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
+    }
+  })
+  return await response.json()
+}
+
+export async function getStarred() {
+  const response = await fetch(`${apiHost}/api/ingredients/starred`, {
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
+    }
+  })
+  return await response.json()
+}
+
+export async function setStarred(body) {
+  const response = await fetch(`${apiHost}/api/ingredients/star`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
     }
   })
   return await response.json()

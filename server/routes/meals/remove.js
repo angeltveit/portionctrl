@@ -8,7 +8,8 @@ export default [
   api(async function remove(req, res, next) {
   
     await mongo('meals').remove({
-      _id: ObjectID(req.body._id)
+      _id: ObjectID(req.body._id),
+      owner: req.payload._id,
     })
     
     return {

@@ -2,32 +2,23 @@ import { mongo } from '../../services/mongo.js'
 import api from '../../middleware/api.js'
 
 export default [
-  api(async function listIngredients(req, res, next) {
+  api(async function listStarred(req, res, next) {
 
-    let query = {}
-    if(req.query.search) {
-      query.name = new RegExp('.*' + req.query.search + '.*', 'i')
-      delete req.query.search
-    }
-
-    const skip = +req.query.skip || 0
-    const limit = +req.query.limit || 10
-    delete req.query.skip
+    const limit = +req.query.limit || 100
     delete req.query.limit
 
-    query = {
+    const query = {
       ...req.query,
-      ...query,
+      starred: req.payload._id,
       $or: [{
         owner: req.payload._id,
       },{
         public: true
-      }]
+      }],
     }
     
     const ingredients = await mongo('ingredients')
       .find(query)
-      .skip(skip)
       .limit(limit)
       .toArray()
 

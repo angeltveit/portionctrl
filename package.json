@@ -54,8 +54,10 @@
     "mongodb": "^3.4.1",
     "pg": "^7.4.3",
     "pug": "^2.0.3",
+    "random-int": "^2.0.1",
     "stylify": "^1.4.0",
     "stylus": "^0.54.7",
+    "twilio": "^3.47.0",
     "vdom": "^0.0.22",
     "virtual-dom": "^2.1.1",
     "widgets-router": "https://github.com/angeltveit/widgets-router.git"

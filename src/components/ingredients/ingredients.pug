@@ -1,0 +1,26 @@
+style=require('./ingredients.styl')
+
+if starred
+  h1 Starred
+  .starred
+    each item in starred
+      .item=item.name
+        a(
+          (click)=star(item),
+          href='javascript:',
+        )
+          kcal-icon(name="heart-broken")
+    if !starred.length
+      i No ingredients starred
+if list
+  h1 Ingredients
+  .ingredients
+    each item in list
+      .item
+        .name=item.name
+        if !isStarred(item)
+          a(
+            (click)=star(item),
+            href='javascript:',
+          )
+            kcal-icon(name="heart")
