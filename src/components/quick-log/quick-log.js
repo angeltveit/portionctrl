@@ -30,7 +30,6 @@ export default class QuickLog extends HTMLElement {
       ingredients: [ingredient],
     })
     if(response.ok) {
-      alert('saved')
       this.load()
     } else {
       alert(response.error || 'Unknown error')
