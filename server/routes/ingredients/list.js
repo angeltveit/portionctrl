@@ -10,6 +10,10 @@ export default [
       delete req.query.search
     }
 
+    if(req.query.uid) {
+      delete req.query.uid
+    }
+
     const skip = +req.query.skip || 0
     const limit = +req.query.limit || 10
     delete req.query.skip
@@ -24,6 +28,8 @@ export default [
         public: true
       }]
     }
+
+    console.log(query)
     
     const ingredients = await mongo('ingredients')
       .find(query)

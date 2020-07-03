@@ -1,7 +1,7 @@
 style=require('./ingredients.styl')
 
 if starred
-  h1 Starred
+  h1 Hearted
   .starred
     each item in starred
       .item=item.name
@@ -14,17 +14,18 @@ if starred
       .no-fav You have no favourites 😔
 if list
   h1 Ingredients
-  input.name#single-factor-code-text-field(
+  input.search(
     name='search',
     placeholder='Search ingredients...',
-    (keyup)=searchIngredients()
+    (input)=searchIngredients()
   )
+  h1
   .ingredients
-    each item in list
+    each listItem in this.list
       .item
-        .name=item.name
-        if !isStarred(item)
+        .name=listItem?.name
+        if !isStarred(listItem)
           a(
-            (click)=star(item),
+            (click)=star(listItem),
             href='javascript:',
           ) ❤️

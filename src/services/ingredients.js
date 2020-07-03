@@ -2,9 +2,11 @@ const apiHost = ''
 
 export async function list(query={}) {
   const partial = new URLSearchParams()
+  const uid = Date.now()
   for(let [key, val] of Object.entries(query)) {
     partial.append(key, val)
   }
+  partial.append('uid', uid)
   const response = await fetch(`${apiHost}/api/ingredients?${partial.toString()}`, {
     headers: {
       'content-type': 'application/json',
