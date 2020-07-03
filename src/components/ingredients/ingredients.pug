@@ -8,10 +8,10 @@ if starred
         a(
           (click)=star(item),
           href='javascript:',
-        )
-          kcal-icon(name="heart-broken")
+        ) ❌
+
     if !starred.length
-      i No ingredients starred
+      .no-fav You have no favourites 😔
 if list
   h1 Ingredients
   .ingredients
@@ -22,5 +22,4 @@ if list
           a(
             (click)=star(item),
             href='javascript:',
-          )
-            kcal-icon(name="heart")
+          ) ❤️

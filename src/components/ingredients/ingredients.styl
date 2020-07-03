@@ -9,7 +9,9 @@ h1, h2
   color: #00B4D8
   text-align: center
 .ingredients, .starred
-  max-height: 150px
+  display: flex
+  flex-direction: column
+  height: 150px
   overflow: auto
   margin: 0 1em
   background-color: rgba(0,0,0,0.1)
@@ -18,7 +20,7 @@ h1, h2
   scroll-behavior: touch
   .item
     display: flex
-    margin: .5em 0
+    margin: .25em 0
     padding: .5em
     background-color: rgba(0,0,0,0.1)
 
@@ -26,3 +28,9 @@ h1, h2
       margin-left: auto
       color: currentColor
       text-decoration: none
+.no-fav
+  font-weight: bold
+  text-align: center
+  font-size: 2em
+  color: rgba(0,0,0,0.3)
+  margin: auto 0
