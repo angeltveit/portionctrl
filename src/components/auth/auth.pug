@@ -21,9 +21,10 @@ if state === 'otp'
     h1 Code
     p You will receive a code by SMS. Please check your phone.
     .label Code from SMS:
-    input.name(
+    input.name#single-factor-code-text-field(
       [value]=form?.code || '',
       name='code',
+      type="tel",
       autocomplete='one-time-code',
       (keyup)=setValue('code', e)
     )
