@@ -1,23 +1,30 @@
 style=require('./main.styl')
+if state !== 'auth'
+  .menu
+    .logo
+      img(src="/images/portionctrl.png")
+    .tabs
+      .tab(
+        (click)=setState('quick-log'),
+        class={ active: state === 'quick-log' }
+      ) Quick log
+      .tab(
+        (click)=setState('log-meal'),
+        class={ active: state === 'log-meal' }
+      ) Log meal
+      .tab(
+        (click)=setState('history'),
+        class={ active: state === 'history' }
+      ) History
+      .tab(
+        (click)=setState('ingredients'),
+        class={ active: state === 'ingredients' }
+      ) Ingredients
 
-.menu
-  .logo
-    img(src="/images/portionctrl.png")
-  .tabs
-    .tab(
-      (click)=setState('quick-log'),
-      class={ active: state === 'quick-log' }
-    ) Quick log
-    .tab(
-      (click)=setState('log-meal'),
-      class={ active: state === 'log-meal' }
-    ) Log meal
-    .tab(
-      (click)=setState('history'),
-      class={ active: state === 'history' }
-    ) History
-
-
+if state === 'auth'
+  kcal-auth(
+    (changeState)=setState(e.state)
+  )
 if state === 'quick-log'
   kcal-quick-log(
     (changeState)=setState(e.state)
@@ -28,5 +35,9 @@ else if state === 'log-meal'
   )
 else if state === 'history'
   kcal-history(
+    (changeState)=setState(e.state)
+  )
+else if state === 'ingredients'
+  kcal-ingredients(
     (changeState)=setState(e.state)
   )

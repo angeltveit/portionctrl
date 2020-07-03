@@ -8,6 +8,7 @@ export async function list(query={}) {
   const response = await fetch(`${apiHost}/api/recipes?${partial.toString()}`, {
     headers: {
       'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
     }
   })
   return await response.json()

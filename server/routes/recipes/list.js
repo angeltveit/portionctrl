@@ -10,7 +10,14 @@ export default [
     }
     
     const recipes = await mongo('recipes')
-      .find(query)
+      .find({
+        ...query,
+        $or: [{
+          owner: req.payload._id,
+        },{
+          public: true,
+        }]
+      })
       .limit( +req.query.limit || 10 )
       .skip(+req.query.skip || 0)
       .toArray()

@@ -35,7 +35,7 @@ async function authorize(phone, code) {
 }
 
 export default [
-  api(async function createMeal(req, res, next) {
+  api(async function createAuth(req, res, next) {
 
     const { phone, code } = req.body
 
@@ -64,7 +64,7 @@ export default [
       }
     }
     
-    await mongo('users').update({
+    await mongo('users').updateOne({
       phone,
     },{
       $set: {

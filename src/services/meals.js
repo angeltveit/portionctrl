@@ -8,6 +8,7 @@ export async function list(query={}) {
   const response = await fetch(`${apiHost}/api/meals?${partial.toString()}`, {
     headers: {
       'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
     }
   })
   return await response.json()
@@ -19,6 +20,7 @@ export async function create(body) {
     body: JSON.stringify(body),
     headers: {
       'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
     }
   })
   return await response.json()
@@ -29,6 +31,7 @@ export async function remove(body) {
     body: JSON.stringify(body),
     headers: {
       'content-type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`,
     }
   })
   return await response.json()

@@ -1,6 +1,6 @@
 import { Component, Template, Attribute } from '@scoutgg/widgets'
 import { create, list as listMeals, kcalFor } from '../../services/meals'
-import { list } from '../../services/ingredients'
+import { list, getStarred } from '../../services/ingredients'
 import moment from 'moment'
 
 import template from './quick-log.pug'
@@ -12,7 +12,7 @@ export default class QuickLog extends HTMLElement {
     this.load()
   }
   async load() {
-    this.list = await list({ starred: 'true' })
+    this.list = await getStarred()
     this.today = await listMeals()
     this.render()
   }

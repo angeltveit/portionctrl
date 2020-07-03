@@ -4,19 +4,22 @@
 
 .menu
   background-color: #0077b6
-  padding: 1em
   padding-top: 3em
   padding-bottom: 0
   margin-bottom: 2em
+.logo
+  margin: 0 1em
 .tabs
   display: flex
   margin-top: 1em
+  overflow: auto 
+  white-space: nowrap
+  scroll-behavior: touch
   .tab
     padding: .5em 1em
     background-color: rgba(255,255,255,.2)
-    border-radius: 5px 5px 0 0
-    border-bottom: 3px solid transparent
-    margin-right: 5px
+    border-top: 3px solid transparent
+    margin-right: 1px
     color: rgba(255,255,255,.9)
     &.active
       background-color: #00B4D8

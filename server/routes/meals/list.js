@@ -10,7 +10,10 @@ export default [
     }
     console.log(query)
     const meals = await mongo('meals')
-      .find(query)
+      .find({
+        ...query,
+        owner: req.payload._id,
+      })
       .skip(+req.query.skip || 0)
       .limit( +req.query.limit || 0 )
       .toArray()
