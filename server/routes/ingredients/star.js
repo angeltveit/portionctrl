@@ -24,7 +24,7 @@ export default [
 
     const isStarred = (ingredient.starred || []).includes(req.payload._id)
     const ingredients = await mongo('ingredients')
-      .update({
+      .updateOne({
         _id: ObjectID(ingredient._id),
         $or:[{
           owner: req.payload._id,
