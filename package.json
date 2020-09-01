@@ -78,7 +78,7 @@
     "@babel/preset-env": "7.1.0",
     "babelify": "9",
     "browserify": "^16.2.2",
-    "browserify-hmr": "^0.3.6",
+    "browserify-hmr": "^0.4.0",
     "fn-pug": "scoutgg/fn-pug",
     "gulp": "^3.9.1",
     "gulp-babel": "^8.0.0",
