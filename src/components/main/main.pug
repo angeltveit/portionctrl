@@ -1,9 +1,15 @@
 style=require('./main.styl')
 if state !== 'auth'
-  .greeter Hey,
-    .user Tobben
-      span !
+  .top
+    .greeter Hey,
+      .user Tobben
+        span !
+    .logout(
+      (click)=logout()
+    ) Logout
   .date= `It's ` + moment().format('dddd MMM D, YYYY')
+  if geo
+    .location=geo
   .menu
     .tabs
       .tab(

@@ -21,7 +21,8 @@ export default class Main extends HTMLElement {
       this.state = 'quick-log'
     }
     navigator.geolocation.getCurrentPosition((position) => {
-      alert(`Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`)
+      this.geo = `Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`
+      this.render()
     })
     this.render()
   }
