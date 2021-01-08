@@ -1,12 +1,10 @@
 style=require('./main.styl')
 if state !== 'auth'
+  .greeter Hey,
+    .user Tobben
+      span !
+  .date= `It's ` + moment().format('dddd MMM D, YYYY')
   .menu
-    .logo
-      img(src="/images/portionctrl.png")
-      a(
-        (click)=logout(),
-        href='javascript:'
-      ) Logout
     .tabs
       .tab(
         (click)=setState('quick-log'),
@@ -29,6 +27,7 @@ if state === 'auth'
   kcal-auth(
     (changeState)=setState(e.state)
   )
+    
 if state === 'quick-log'
   kcal-quick-log(
     (changeState)=setState(e.state)

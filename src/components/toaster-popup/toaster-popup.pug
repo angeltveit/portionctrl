@@ -1,0 +1,13 @@
+style=require('./toaster-popup.styl')
+.backdrop(class=state)
+  .dialog
+    .title=title
+    .description
+      .thumbnail
+        img(src="/images/characters/wizard.svg")
+      p=message
+    .actions
+      .button.cta View details
+      .button(
+        (click)=close()
+      ) Close

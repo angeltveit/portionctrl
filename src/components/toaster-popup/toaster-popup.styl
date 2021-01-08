@@ -1,0 +1,68 @@
+.backdrop
+  display: none
+  flex-direction: column
+  position: fixed
+  top: 0
+  left: 0
+  background-color: rgba(0,0,0,.6)
+  height: 100%
+  width: 100%
+  z-index: 10
+  padding: 0 2em
+  align-items: center
+  justify-content: center
+  box-sizing: border-box
+  &.open
+    display: flex
+.dialog
+  display: flex
+  flex-direction: column
+  background-color: #fff
+  box-sizing: border-box
+  padding: 0.5em 1em
+  color: rgba(0,0,0,0.7)
+  border-radius: 1em
+  opacity: 0
+  width: 100%
+  animation-name: slide-in
+  animation-duration: 750ms
+  animation-timing-function: ease-out
+  animation-fill-mode: forwards
+  animation-delay: 1s
+  transform: translateY(5em)
+.title
+  font-size: 1.5em
+  font-weight: bold
+  text-align: center
+.thumbnail
+  border: 5px solid rgba(0,0,0,0.1)
+  border-radius: 50%
+  padding: 1em
+  margin: 1em auto
+  width: fit-content
+  img
+    height: 5em
+.description
+  margin: .25em 0
+  
+.actions
+  display: flex
+  justify-content: space-between
+  margin-top: 2em
+  
+  .button
+    background-color: rgba(0, 0, 0, .1)
+    padding: .5em 1em
+    border-radius: 3px
+    font-weight: bold
+    &.cta
+      background-color: var(--accent-color-0)
+      color: var(--primary-text-0)
+
+@keyframes slide-in
+  from
+    opactiy: 0
+    transform: translateY(5em)
+  to
+    opacity: 1
+    transform: translateY(0)

@@ -17,10 +17,11 @@ input(
     )= meal.title
 
 h2 Ingredients
-  a(
+  a.add(
     (click)=addIngredient(),
     href='javascript:'
   )='+Add ingredient'
+p Enter all the ingredients in your meal. If it does not not exists, it will be created and ready next time you need it.
 .ingredients
   each ingredient, index in form.ingredients
     .label Ingredient
@@ -53,6 +54,7 @@ h2 Ingredients
     .suggestions(
       class={ show: ingredientSuggestions[index]?.length }
     )
+      .title Suggestions:
       each ingredient in ingredientSuggestions[index]
         .suggestion(
           (click)=useIngredientSuggestion(index, ingredient)

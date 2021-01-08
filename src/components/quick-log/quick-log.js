@@ -40,6 +40,15 @@ export default class QuickLog extends HTMLElement {
     if(kcal <= 1499) return 'warning'
     return 'danger'
   }
+  get gradient() {
+
+    return [
+      'background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);',
+      'background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(147,230,241,1) 0%, rgba(145,192,241,1) 45.5% ); color: rgba(0,0,0,0.5)',
+      'background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);color: rgba(0,0,0,0.5);',
+      'background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);color: rgba(0,0,0,0.5);'
+    ]
+  }
   get totalCalories() {
     if(!this.today) return 0
     const meals = (this.today || []).filter(meal => {

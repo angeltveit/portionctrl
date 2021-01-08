@@ -1,4 +1,5 @@
 import { Component, Template, Attribute } from '@scoutgg/widgets'
+import moment from 'moment'
 import { create } from '../../services/meals'
 
 import '../new-meal/new-meal'
@@ -19,7 +20,9 @@ export default class Main extends HTMLElement {
     } else {
       this.state = 'quick-log'
     }
-    
+    navigator.geolocation.getCurrentPosition((position) => {
+      alert(`Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`)
+    })
     this.render()
   }
   setState(state) {
@@ -33,7 +36,9 @@ export default class Main extends HTMLElement {
     localStorage.clear()
     location.reload()
   }
-
+  get moment() {
+    return moment
+  }
   get noShadow() {
     return true
   }

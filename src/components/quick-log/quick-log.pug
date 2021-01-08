@@ -1,14 +1,15 @@
 style= require('./quick-log.styl')
 .total
   .counter
-    .heading TODAY
+    .heading Today's count
     h2(
       class=this.status(totalCalories)
     )=totalCalories
     .description kcal
-each item in list
+each item, index in list
   .item(
-    (click)=quickLog(item)
+    (click)=quickLog(item),
+    style=`${gradient[index]}`
   )
     .icon
       if item.icon

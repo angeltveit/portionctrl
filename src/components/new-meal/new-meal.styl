@@ -11,26 +11,33 @@ h1, h2
   align-items: center
   a
     font-size: .5em
+p
+  color: var(--primary-text-1)
 a
   text-transform: uppercase
   font-weight: bold
-  color: #03045E
+  color: #fb81e0
   margin-left: auto
   font-size: .8em
   display: flex
   align-items: center
+  text-decoration: none
+  &.add
+    color: #74f2a7
 input
-  border: 1px solid rgba(0,0,0,0.2)
+  border: 0
+  background-color: #242432
   border-radius: 5px
   padding: .5em 1em
   font-size: 16px
   box-sizing: border-box
+  color: var(--primary-text-0)
   &:focus
     outline: none
     border-color: #0077B6
 .ingredients
   display: grid
-  grid-gap: 0 1em
+  grid-gap: 0 .5em
   grid-template-columns: 1fr 80px 80px auto
   .name
     width: 100%
@@ -39,10 +46,11 @@ input
     width: 100%
 .label
   padding-top: 1em
-  color: rgba(0,0,0,0.7)
+  color: var(--pprimary-text-1)
   font-weight: bold
   text-transform: uppercase
   font-size: .8em
+  margin-bottom: .5em
 
 .total
   margin-top: 4em
@@ -50,7 +58,7 @@ input
   flex-direction: column
   align-items: center
   justify-content: center
-  margin-bottom: 2em
+  margin-bottom: 7em
   .counter
     display: flex
     align-items: center
@@ -73,14 +81,15 @@ input
       font-size: .9em
   
 .save
-  background-color: #0077b6
-  color: rgba(255,255,255,.9)
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%)
+  color: rgba(0,0,0,0.7)
   padding: 1em
   font-size: 1.25em
   font-weight: bold
   text-align: center
   margin-top: auto
   cursor: pointer
+  border-radius: 1em
 .suggestions
   height: 0px
   overflow: auto
@@ -89,9 +98,15 @@ input
   transition-duration: 250ms
   transition-timing-function: ease-out
   grid-column: span 4
+  margin-top: .5em
   &.show
     height: 200px
   .suggestion
-    padding: .25em
+    padding: .5em
     margin: .25em
-    background-color: rgba(255,255,255, .8)
+    background-color: rgba(255,255,255, .1)
+  .title
+    padding: .5em
+    font-weight: bold
+    color: var(--primary-text-1)
+    margin-bottom: 1em

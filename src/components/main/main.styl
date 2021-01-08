@@ -1,12 +1,24 @@
 kcal-main
   display: flex
   flex-direction: column
-
+  box-sizing: border-box
+  padding: 1.5em 1em
+  .greeter
+    display: flex
+    color: #c7c2ec
+    font-size: 1.5em
+    .user
+      margin-left: .25em
+      font-weight: bold
+      color: var(--primary-text-0)
+  .date
+    margin-top: .25em
   .menu
-    background-color: #0077b6
+    background-color: #2e2e3d
     padding-top: 3em
     padding-bottom: 0
     margin-bottom: 2em
+    font-weight: 400
   .logo
     margin: 0 1em
     display: flex
@@ -25,12 +37,19 @@ kcal-main
     scroll-behavior: touch
     .tab
       padding: .5em 1em
-      background-color: rgba(255,255,255,.2)
-      border-top: 3px solid transparent
       margin-right: 1px
-      color: rgba(255,255,255,.9)
+      color: var(--primary-text-1)
       &.active
-        background-color: #00B4D8
         border-color: rgba(0,0,0,.5)
-        
         font-weight: bold
+        color: var(--primary-text-0)
+        position: relative
+        &:after
+          content: ''
+          position: absolute
+          bottom: 0
+          left: 50%
+          height: .3em
+          width: .3em
+          background-color: #fff
+          border-radius: 50%
