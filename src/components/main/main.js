@@ -21,12 +21,9 @@ export default class Main extends HTMLElement {
     } else {
       this.state = 'quick-log'
     }
-    setInterval(()=> {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.geo = `Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`
-        this.render()
-      })
-    }, 1000)
+    
+    
+    
     
     const { missions } = await listMissions()
     missions.forEach((mission) => {
@@ -38,7 +35,12 @@ export default class Main extends HTMLElement {
     this.state = state
     this.render()
   }
-  
+  getLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.geo = `Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`
+      this.render()
+    })
+  }
   logout() {
     const yes = confirm('Are you sure you want to log out?')
     if(!yes) return
