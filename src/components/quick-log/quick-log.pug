@@ -9,7 +9,7 @@ style= require('./quick-log.styl')
 each item, index in list
   .item(
     (click)=quickLog(item),
-    style=`${gradient[index]}`
+    style=`${gradient[index % gradient.length - 1]}`
   )
     .icon
       if item.icon
