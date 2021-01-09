@@ -1,6 +1,7 @@
 import { Component, Template, Attribute } from '@scoutgg/widgets'
 import moment from 'moment'
 import { create } from '../../services/meals'
+import { list as listMissions } from '../../services/missions'
 
 import '../new-meal/new-meal'
 import '../history/history'
@@ -20,9 +21,16 @@ export default class Main extends HTMLElement {
     } else {
       this.state = 'quick-log'
     }
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.geo = `Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`
-      this.render()
+    setInterval(()=> {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.geo = `Location LAT:${position.coords.latitude} LONG: ${position.coords.longitude}`
+        this.render()
+      })
+    }, 1000)
+    
+    const { missions } = await listMissions()
+    missions.forEach((mission) => {
+      window.toasterService.alert('new-mission', mission)
     })
     this.render()
   }
