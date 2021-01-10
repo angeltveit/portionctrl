@@ -18,9 +18,13 @@ if(module.hot) {
   module.hot.accept()
 }
 
-document.body.addEventListener('touchmove', (e)=> {
-  e.preventDefault()
-}, true)
+window.addEventListener('touchmove', function (event) {
+  event.preventDefault()
+}, {passive: false})
+
+document.querySelector('.app-container').addEventListener('touchmove', function (event) {
+  event.stopPropagation()
+}, false)
 
 window.toasterService = new ToasterService()
 
