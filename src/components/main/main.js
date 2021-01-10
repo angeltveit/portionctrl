@@ -8,7 +8,14 @@ import '../history/history'
 import '../quick-log/quick-log'
 import '../ingredients/ingredients'
 import '../auth/auth'
+/*
+Ideas:
 
+ * XP-bar on main
+ * Missions-tab
+ * 
+
+*/
 
 import template from './main.pug'
 
@@ -21,9 +28,6 @@ export default class Main extends HTMLElement {
     } else {
       this.state = 'quick-log'
     }
-    
-    
-    
     
     const { missions } = await listMissions()
     missions.forEach((mission) => {

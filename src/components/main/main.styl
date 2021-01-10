@@ -1,8 +1,13 @@
 kcal-main
-  display: flex
-  flex-direction: column
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 3em 1em;
+  padding-bottom: 0;
+  height: 100vh;
+  overflow: hidden;
   box-sizing: border-box
-  padding: 3em 1em
+  .navigation
+    height: var(--navigation-height);
   .top
     display: flex
     justify-content: space-between
@@ -59,3 +64,5 @@ kcal-main
           width: .3em
           background-color: #fff
           border-radius: 50%
+  .sub-pages
+    overflow: auto

@@ -6,14 +6,22 @@ style= require('./quick-log.styl')
       class=this.status(totalCalories)
     )=totalCalories
     .description kcal
-each item, index in list
-  .item(
-    (click)=quickLog(item),
-    style=`${gradient[index % gradient.length]}`
-  )
-    .icon
-      if item.icon
-        img(src=`/images/icons/${item.icon}`)
-    .heading=item.name
-    .kcal=`${item.kcal}kcal`
-      span=` (${+item.kcal+totalCalories}kcal)`
+  .stats
+    .level
+      .value=user.level || 0
+      .label Level
+    .yeserday
+      .value=yesterdayCalories || 0
+      .label Yesterday kcal
+.quick-add
+  each item, index in list
+    .item(
+      (click)=quickLog(item),
+      style=`${gradient[index % gradient.length]}`
+    )
+      .icon
+        if item.icon
+          img(src=`/images/icons/${item.icon}`)
+      .heading=item.name
+      .kcal=`${item.kcal}kcal`
+        span=` (${+item.kcal+totalCalories}kcal)`

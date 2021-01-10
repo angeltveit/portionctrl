@@ -9,11 +9,14 @@ import template from './quick-log.pug'
 @Template(template)
 export default class QuickLog extends HTMLElement {
   async connectedCallback() {
+    this.totalCalories = 0
     this.load()
   }
   async load() {
     this.list = await getStarred()
     this.today = await listMeals()
+    this.animateNumber('totalCalories', this.totalCalories, this.calculateTotalCalories(moment()), 1000)
+    this.yesterdayCalories = this.calculateTotalCalories(moment().subtract(1, 'day'))
     this.render()
   }
   setState(state) {
@@ -40,6 +43,26 @@ export default class QuickLog extends HTMLElement {
     if(kcal <= 1499) return 'warning'
     return 'danger'
   }
+  animateNumber(variable, from, count, duration=500) {
+    if(this.animating) return
+    let startTimestamp = null;
+    let start = +from
+    let end = +count
+    this.animating = true
+    console.log('info',start, end)
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      this[variable] = Math.floor(progress * (end - start) + start);
+      this.render()
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        this.animating = false
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
   get gradient() {
 
     return [
@@ -49,10 +72,14 @@ export default class QuickLog extends HTMLElement {
       'background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);color: rgba(0,0,0,0.5);'
     ]
   }
-  get totalCalories() {
+  get user() {
+    if(localStorage.token) return {}
+    return JSON.parse(atob(localStorage.token.split('.')[1]))
+  }
+  calculateTotalCalories(date) {
     if(!this.today) return 0
     const meals = (this.today || []).filter(meal => {
-      return moment(meal.createdAt).isSame(moment(), 'day')
+      return moment(meal.createdAt).isSame(date, 'day')
     })
     return meals.reduce((prev, curr) => {
       prev += +kcalFor(curr)
