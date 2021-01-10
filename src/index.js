@@ -18,6 +18,10 @@ if(module.hot) {
   module.hot.accept()
 }
 
+document.body.addEventListener('touchmove', (e)=> {
+  e.preventDefault()
+}, true)
+
 window.toasterService = new ToasterService()
 
 // Bootstrap Widgets (Start it)
