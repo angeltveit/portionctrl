@@ -1,6 +1,11 @@
 style= require('./quick-log.styl')
 .total
-  .counter
+  kcal-progress-ring(
+    [success]=1000,
+    [warning]=1500,
+    [danger]=2000,
+    [value]=this._totalCalories
+  )
     .heading Today's count
     h2(
       class=this.status(totalCalories)

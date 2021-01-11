@@ -15,7 +15,12 @@ export default class QuickLog extends HTMLElement {
   async load() {
     this.list = await getStarred()
     this.today = await listMeals()
-    this.animateNumber('totalCalories', this.totalCalories, this.calculateTotalCalories(moment()), 1000)
+    this._totalCalories = this.calculateTotalCalories(moment())
+    this.render()
+    setTimeout(() => {
+      this.animateNumber('totalCalories', this.totalCalories, this._totalCalories, 500)
+    })
+
     this.yesterdayCalories = this.calculateTotalCalories(moment().subtract(1, 'day'))
     this.render()
   }

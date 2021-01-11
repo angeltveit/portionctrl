@@ -1,0 +1,28 @@
+:host
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  position: relative
+  height: 150px
+  width: 150px
+svg
+  position: absolute
+  top: 0
+  left: 0
+
+  circle
+    transition: 500ms stroke-dashoffset
+    transition-timing-function: linear
+    // axis compensation
+    transform: rotate(-90deg)
+    transform-origin: 50% 50%
+    //stroke: url(#gradient)
+    &.empty
+      stroke: var(--primary-text-1)
+    &.success
+      stroke: #85FFBD
+    &.warning
+      stroke: #fcb045
+    &.danger
+      stroke: #fd1d1d

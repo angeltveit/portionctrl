@@ -3,6 +3,7 @@ import moment from 'moment'
 import { create } from '../../services/meals'
 import { list as listMissions } from '../../services/missions'
 
+import '../progress-ring/progress-ring'
 import '../new-meal/new-meal'
 import '../history/history'
 import '../quick-log/quick-log'
@@ -31,7 +32,7 @@ export default class Main extends HTMLElement {
     
     const { missions } = await listMissions()
     missions.forEach((mission) => {
-      window.toasterService.alert('new-mission', mission)
+      //window.toasterService.alert('new-mission', mission)
     })
     this.render()
   }
