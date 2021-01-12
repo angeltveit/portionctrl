@@ -7,6 +7,10 @@ export async function load() {
       'Authorization': `Bearer ${localStorage.token}`,
     }
   })
+  if(!response.ok) {
+    localStorage.clear()
+    return location.reload()
+  }
   return await response.json()
 }
 
