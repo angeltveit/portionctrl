@@ -69,8 +69,10 @@ export default async function() {
           streakLength++
         }
         streakLength++
-      } else if(streakLength) {
-        consecutivePoints += streakLength * (streakLength > 5 ? 5 : streakLength) * 2 // Multiplier grows, but max is 5
+      }
+      
+      if(streakLength) {
+        consecutivePoints += streakLength * (streakLength >= 5 ? 5 : streakLength) * 2 // Multiplier grows, but max is 5
         streakLength = 0
         streakStart = null
       }
