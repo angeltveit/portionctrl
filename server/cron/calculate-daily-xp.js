@@ -1,7 +1,8 @@
 import { initMongo, mongo } from '../services/mongo.js'
 import moment from 'moment'
 
-await initMongo()
+let loaded
+
 
 function calculateTotalCalories(meals, date) {
   const mealsAtDate = meals.filter(meal => {
@@ -22,6 +23,8 @@ function kcalFor(meal) {
 }
 
 export default async function() {
+  if(!loaded) await initMongo()
+  
   const users = await mongo('users')
     .find()
     .toArray()
