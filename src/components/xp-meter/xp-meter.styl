@@ -1,0 +1,45 @@
+:host
+  display: flex
+  flex-direction: column
+  width: 100%
+.label
+  text-transform: uppercase
+  font-weight: bold
+  font-size: .8em
+  color: var(--primary-text-1)
+  margin-bottom: .5em
+  text-align: center
+  margin-top: 1em
+.xp-meter
+  background-color: var(--primary-text-1)
+  height: .5em
+  width: 100%
+  border-radius: 1em
+
+.xp
+  height: 100%
+  border-radius: 1em
+  transition-property: width
+  transition-duration: 800ms
+  transition-timing-function: ease-out
+  overflow: hidden
+  position: relative
+  .animation
+    background: repeating-linear-gradient(-55deg, #ed9a6b 1px, #F7CE68 2px, #F7CE68 11px, #ed9a6b 12px, #ed9a6b 20px)
+    animation-name: xp-anim
+    animation-duration: 1s
+    animation-iteration-count: infinite 
+    animation-timing-function: linear
+    position: absolute;
+    left: -46px
+    right: 0
+    top: 0
+    bottom: 0
+@keyframes xp-anim {
+	from {
+		transform: translateX(0);
+	}
+	to { 
+		transform: translateX(46px);
+	}
+}

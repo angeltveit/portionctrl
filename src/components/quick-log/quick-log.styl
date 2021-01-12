@@ -28,16 +28,15 @@
   align-items: center
   justify-content: center
   background: linear-gradient(45deg, rgba(55,55,73,1) 8%, rgba(77,77,101,1) 75%)
-  padding: 2em
+  padding: 1em 2em
   border-radius: 1em
-  height: 170px
   position: sticky
   top: 0
   left: 0
   z-index: 1
-  
+  kcal-xp-meter
+    margin: 1em 0
 .stats
-  margin-bottom: -1em
   width: 100%
   display: flex
   justify-content: space-between
@@ -69,3 +68,25 @@ kcal-progress-ring
   .description
     font-size: .9em
     color: var(--primary-text-1)
+.bonus
+  &.medium
+    color: #F7CE68
+    font-weight: bold
+    filter: drop-shadow(2px 1px 0px black)
+  &.high
+    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold
+    filter: none
+    animation-name: lift-up
+    animation-duration: .5s
+    animation-fill-mode: forwards
+    animation-timing-function: ease-out
+    transform: scale(1.15)
+
+@keyframes lift-up
+  from
+    transform: scale(1)
+  to
+    transform: scale(1.15)

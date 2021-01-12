@@ -1,9 +1,13 @@
 import { Component, Template, Attribute } from '@scoutgg/widgets'
 import { create, list as listMeals, kcalFor } from '../../services/meals'
 import { list, getStarred } from '../../services/ingredients'
-import moment from 'moment'
+import profile from '../../services/profile'
 
+import moment from 'moment'
 import template from './quick-log.pug'
+
+import '../xp-meter/xp-meter'
+
 
 @Component('kcal')
 @Template(template)
@@ -15,6 +19,7 @@ export default class QuickLog extends HTMLElement {
   async load() {
     this.list = await getStarred()
     this.today = await listMeals()
+    this.user = await profile.load()
     this._totalCalories = this.calculateTotalCalories(moment())
     this.render()
     setTimeout(() => {
@@ -76,10 +81,6 @@ export default class QuickLog extends HTMLElement {
       'background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);color: rgba(0,0,0,0.5);',
       'background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);color: rgba(0,0,0,0.5);'
     ]
-  }
-  get user() {
-    if(localStorage.token) return {}
-    return JSON.parse(atob(localStorage.token.split('.')[1]))
   }
   calculateTotalCalories(date) {
     if(!this.today) return 0

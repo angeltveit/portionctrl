@@ -11,13 +11,23 @@ style= require('./quick-log.styl')
       class=this.status(totalCalories)
     )=totalCalories
     .description kcal
+  kcal-xp-meter(
+    [xp]=user?.xp
+  )
   .stats
     .level
-      .value=user.level || 0
-      .label Level
-    .yeserday
+      .value=user?.level || 0
+      .label Current level
+    if user?.streakLength
+      .bonus(
+        class={medium: user?.streakLength > 2, high: user?.streakLength >= 5}
+      )
+        .value='x' + (user?.streakLength || 0)
+        .label Streak bonus
+    .yesterday
       .value=yesterdayCalories || 0
       .label Yesterday kcal
+
 .quick-add
   each item, index in list
     .item(

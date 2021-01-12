@@ -1,0 +1,7 @@
+style=require('./xp-meter.styl')
+.label Progress until Next level
+.xp-meter
+  .xp(
+    style=`width: ${this.xp || 0}%`
+  )
+    .animation

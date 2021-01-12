@@ -3,7 +3,7 @@ import MongoDB from 'mongodb'
 import emitter from './emitter.js'
 
 var conn = null
-export async function initMongo() {
+export async function initMongo(silent=false) {
   if(conn) return
   const client = await MongoDB.MongoClient.connect(process.env.MONGODB || 'mongodb://localhost:27017', {
     useNewUrlParser: true,
@@ -11,7 +11,9 @@ export async function initMongo() {
   conn = client.db(process.env.MONGODB_DATABASE || 'kcal')
   
   console.log('Mongodb connected...')
-  emitter.emit('mongodbConnected')
+  
+  if(!silent) emitter.emit('mongodbConnected')
+  return client
 }
 
 
