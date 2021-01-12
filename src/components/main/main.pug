@@ -29,25 +29,24 @@ if state !== 'auth'
           (click)=setState('ingredients'),
           class={ active: state === 'ingredients' }
         ) Ingredients
-.sub-pages
-  if state === 'auth'
-    kcal-auth(
-      (changeState)=setState(e.state)
-    )
-      
-  if state === 'quick-log'
-    kcal-quick-log(
-      (changeState)=setState(e.state)
-    )
-  else if state === 'log-meal'
-    kcal-new-meal(
-      (changeState)=setState(e.state)
-    )
-  else if state === 'history'
-    kcal-history(
-      (changeState)=setState(e.state)
-    )
-  else if state === 'ingredients'
-    kcal-ingredients(
-      (changeState)=setState(e.state)
-    )
+  .sub-pages
+    if state === 'quick-log'
+      kcal-quick-log(
+        (changeState)=setState(e.state)
+      )
+    else if state === 'log-meal'
+      kcal-new-meal(
+        (changeState)=setState(e.state)
+      )
+    else if state === 'history'
+      kcal-history(
+        (changeState)=setState(e.state)
+      )
+    else if state === 'ingredients'
+      kcal-ingredients(
+        (changeState)=setState(e.state)
+      )
+if state === 'auth'
+  kcal-auth(
+    (changeState)=setState(e.state)
+  )
