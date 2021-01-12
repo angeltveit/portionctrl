@@ -69,12 +69,13 @@ export default async function() {
           streakLength++
         }
         streakLength++
+      } else {
+        streakLength = 0
+        streakStart = null
       }
       
       if(streakLength) {
         consecutivePoints += streakLength * (streakLength >= 5 ? 5 : streakLength) * 2 // Multiplier grows, but max is 5
-        streakLength = 0
-        streakStart = null
       }
 
       lastDate = {
