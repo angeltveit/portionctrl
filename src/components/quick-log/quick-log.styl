@@ -70,20 +70,22 @@ kcal-progress-ring
     color: var(--primary-text-1)
 .bonus
   &.medium
-    color: #F7CE68
-    font-weight: bold
-    filter: drop-shadow(2px 1px 0px black)
+    .value
+      color: #F7CE68
+      font-weight: bold
+      filter: drop-shadow(2px 1px 0px black)
   &.high
-    background: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bold
-    filter: none
-    animation-name: lift-up
-    animation-duration: .5s
-    animation-fill-mode: forwards
-    animation-timing-function: ease-out
-    transform: scale(1.15)
+    .label, .value
+      background: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold
+      filter: none
+      animation-name: lift-up
+      animation-duration: .5s
+      animation-fill-mode: forwards
+      animation-timing-function: ease-out
+      transform: scale(1.15)
 
 @keyframes lift-up
   from
