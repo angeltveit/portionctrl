@@ -75,7 +75,7 @@ export default async function() {
       }
       
       if(streakLength) {
-        consecutivePoints += streakLength * (streakLength >= 5 ? 5 : streakLength) * 2 // Multiplier grows, but max is 5
+        consecutivePoints += streakLength * (streakLength >= 5 ? 5 : streakLength) // Multiplier grows, but max is 5
       }
 
       lastDate = {
