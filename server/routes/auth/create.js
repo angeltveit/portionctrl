@@ -71,11 +71,13 @@ export default [
         otp,
       }
     })
-
+    if(!phone.includes('+')) {
+      phone = '+47' + phone
+    }
     const { sid } = twilio.messages.create({
       body: `One time code: ${otp}`,
       from: 'PortionCtrl',
-      to: `+47${phone}`
+      to: phone,
     })
     
     return { state: 'otp' }
