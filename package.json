@@ -52,7 +52,7 @@
     "knex-stringcase": "^0.2.0",
     "marked": "^0.5.1",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.35",
     "mongodb": "^3.4.1",
     "pg": "^7.4.3",
     "pug": "^2.0.3",
